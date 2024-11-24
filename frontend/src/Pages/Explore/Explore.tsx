@@ -273,6 +273,63 @@ const Explore = () => {
                 </Select>
               </FormControl>
             </div>
+            {/* Filter Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setShowFilterDropdown(!showFilterDropdown)}
+                className="p-2 ml-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-200"
+              >
+                More Options{" "}
+              </button>
+
+              {showFilterDropdown && (
+                <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-200 shadow-lg rounded-lg p-4 z-10">
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Location:
+                    </label>
+                    <input
+                      type="text"
+                      value={filterLocation}
+                      onChange={(e) => setFilterLocation(e.target.value)}
+                      className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                      placeholder="Enter location"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Min Salary:
+                    </label>
+                    <input
+                      type="number"
+                      value={filterMinSalary}
+                      onChange={(e) => setFilterMinSalary(e.target.value)}
+                      className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                      placeholder="Enter min salary"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Max Salary:
+                    </label>
+                    <input
+                      type="number"
+                      value={filterMaxSalary}
+                      onChange={(e) => setFilterMaxSalary(e.target.value)}
+                      className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                      placeholder="Enter max salary"
+                    />
+                  </div>
+
+                  <button
+                    onClick={() => setShowFilterDropdown(false)}
+                    className="w-full p-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-200"
+                  >
+                    Apply Filters
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
 
           <div
