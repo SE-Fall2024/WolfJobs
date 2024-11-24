@@ -19,8 +19,9 @@ import JobPreview from "./Pages/CreateJob/jobPreview";
 import Resume from "./Pages/Resume/Resume";
 import ResumeViewer from "./components/Resume/ResumeViewer";
 import Notifications from "./Pages/Notifications/Notifications";
-import CalendarPage from "./Pages/Calendar/CalendarPage"; 
-import Interview from './Pages/Interview/Interview';
+import CalendarPage from "./Pages/Calendar/CalendarPage";
+import Interview from "./Pages/Interview/Interview";
+import Saved from "./Pages/Save/save";
 
 const App = () => {
   return (
@@ -46,6 +47,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Explore />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/saved"
+            element={
+              <ProtectedRoute>
+                <Saved />
               </ProtectedRoute>
             }
           />
@@ -81,10 +90,7 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/resumeviewer/:applicantId"
-            element={<ResumeViewer />}
-          />
+          <Route path="/resumeviewer/:applicantId" element={<ResumeViewer />} />
           <Route
             path="/notifications"
             element={
@@ -118,7 +124,6 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          
 
           <Route path="*" element={<>Error 404</>} />
         </Routes>
