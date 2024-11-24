@@ -29,8 +29,7 @@ router.post("/createapplication", jsonParser, usersApi.createApplication);
 router.post("/notifyApplicant", usersApi.notifyApplicant);
 router.post("/acceptInterview", usersApi.acceptInterview);
 router.post("/declineInterview", usersApi.declineInterview);
-
-
-
+router.post("/saveJob", jsonParser, usersApi.saveJob);
+router.get("/saveJobList/:id", jsonParser, usersApi.saveJobList);
 
 module.exports = router;

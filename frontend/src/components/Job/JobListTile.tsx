@@ -3,7 +3,8 @@ import { HiOutlineArrowRight } from "react-icons/hi";
 import { useSearchParams } from "react-router-dom";
 import { useApplicationStore } from "../../store/ApplicationStore";
 import { useUserStore } from "../../store/UserStore";
-
+import SaveSymbol from "../../../public/Save/SaveSymbol";
+import axios from "axios";
 const JobListTile = (props: any) => {
   // const { data, action }: { data: Job; action: string | undefined } = props;
   const { data }: { data: Job } = props;
@@ -49,7 +50,7 @@ const JobListTile = (props: any) => {
   );
 
   const [application, setApplication] = useState<Application | null>(null);
-
+  const [isSaved, setIsSaved] = useState(false);
   useEffect(() => {
     const temp: Application | undefined = applicationList.find(
       (item: Application) =>
@@ -103,6 +104,32 @@ const JobListTile = (props: any) => {
     e.stopPropagation();
     console.log("View Application");
   };
+
+  useEffect(() => {
+    // @ts-ignore
+    setIsSaved(data.saved);
+    // @ts-ignore
+  }, [data.saved]);
+  const toggle = async () => {
+    // @ts-ignore
+    setIsSaved((prev) => !prev);
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/v1/users/saveJob",
+        { userId: userId, jobId: data._id }
+      );
+      if (!response.data.success) {
+        // @ts-ignore
+        setIsSaved((prev) => !prev);
+        console.error("Failed to save job:", response.data.message);
+      }
+    } catch (error) {
+      // @ts-ignore
+      setIsSaved((prev) => !prev);
+      console.error("Error toggling:", error);
+    }
+  };
+
   return (
     <div className="my-3" onClick={handleClick}>
       <div
@@ -110,9 +137,9 @@ const JobListTile = (props: any) => {
           active ? "border-black" : "border-white"
         } border`}
       >
-        <div className="flex flex-row">
-          <div className="w-4/6">
-            <div className="flex items-center space-x-2">
+        <div className="flex flex-col justify-between">
+          <div>
+            <div className="flex items-center space-x-2 ">
               <div
                 className={`w-fit ${getAffiliationColour(
                   affilation
@@ -124,12 +151,21 @@ const JobListTile = (props: any) => {
               </div>
               {userRole === "Applicant" && (
                 <div
-                  className={`ml-2 rounded-full px-3 py-0`}
+                  className={`ml-2 rounded-full   flex-0 px-3 py-0`}
                   style={getMatchStatus(data).style}
                 >
                   <p className="inline text-xs">{getMatchStatus(data).text}</p>
                 </div>
               )}
+
+              <a
+                className="mr-3 flex-1 w-[2.0625rem] overflow-hidden md:w-auto items-end justify-end content-end"
+                onClick={toggle}
+              >
+                <div className="flex justify-end ">
+                  <SaveSymbol fill={isSaved ? "black" : "grey"} />
+                </div>
+              </a>
             </div>
             <div className="h-1"></div>
 

@@ -5,37 +5,36 @@ const History = require("../../../models/history");
 const Job = require("../../../models/job");
 const Application = require("../../../models/application");
 const AuthOtp = require("../../../models/authOtp");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
+const SavedJob = require("../../../models/save");
 
-require('dotenv').config();
-
+require("dotenv").config();
 
 function getTransport() {
   return nodemailer.createTransport({
-    host: "smtp.gmail.com",      
-    port: 587,                    
-    secure: false,                
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
     auth: {
-      user: process.env.EMAIL_USER,      
-      pass: process.env.EMAIL_PASS,         
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 }
 
 async function verifyOtp(req, res) {
-    const { userId, otp } = req.body;
+  const { userId, otp } = req.body;
 
-    const record = await AuthOtp.findOne({ userId, otp });
-    if (!record || record.expiresAt < new Date()) {
-        return res.status(400).json({ error: 'Invalid or expired OTP' });
-    }
+  const record = await AuthOtp.findOne({ userId, otp });
+  if (!record || record.expiresAt < new Date()) {
+    return res.status(400).json({ error: "Invalid or expired OTP" });
+  }
 
-    await AuthOtp.deleteOne({ _id: record._id });
+  await AuthOtp.deleteOne({ _id: record._id });
 
-    res.json({ success: 'OTP verified, login successful' });
+  res.json({ success: "OTP verified, login successful" });
 }
-
 
 module.exports.createSession = async function (req, res) {
   try {
@@ -121,7 +120,8 @@ module.exports.signUp = async function (req, res) {
       if (user) {
         res.set("Access-Control-Allow-Origin", "*");
         return res.status(200).json({
-          message: "Sign Up Successful, here is your token, please keep it safe",
+          message:
+            "Sign Up Successful, here is your token, please keep it safe",
           data: {
             token: jwt.sign(user.toJSON(), "wolfjobs", { expiresIn: "100000" }),
             user,
@@ -134,21 +134,27 @@ module.exports.signUp = async function (req, res) {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
       // Create a new user with hashed password
-      User.create({ ...req.body, password: hashedPassword }, function (err, newUser) {
-        if (err) {
-          return res.status(500).json({ message: "Internal Server Error" });
-        }
+      User.create(
+        { ...req.body, password: hashedPassword },
+        function (err, newUser) {
+          if (err) {
+            return res.status(500).json({ message: "Internal Server Error" });
+          }
 
-        res.set("Access-Control-Allow-Origin", "*");
-        return res.status(200).json({
-          message: "Sign Up Successful, here is your token, please keep it safe",
-          data: {
-            token: jwt.sign(newUser.toJSON(), "wolfjobs", { expiresIn: "100000" }),
-            user: newUser,
-          },
-          success: true,
-        });
-      });
+          res.set("Access-Control-Allow-Origin", "*");
+          return res.status(200).json({
+            message:
+              "Sign Up Successful, here is your token, please keep it safe",
+            data: {
+              token: jwt.sign(newUser.toJSON(), "wolfjobs", {
+                expiresIn: "100000",
+              }),
+              user: newUser,
+            },
+            success: true,
+          });
+        }
+      );
     });
   } catch (err) {
     console.error(err);
@@ -281,7 +287,7 @@ module.exports.createJob = async function (req, res) {
   let user = await User.findOne({ _id: req.body.id });
   check = req.body.skills;
   questions = req.body.questions;
-  filteredQuestions = questions.filter(item => item != "");
+  filteredQuestions = questions.filter((item) => item != "");
   try {
     let job = await Job.create({
       name: req.body.name,
@@ -394,10 +400,10 @@ module.exports.createApplication = async function (req, res) {
 
 // Configure the email transporter
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   auth: {
     user: process.env.EMAIL_USER, // Your email
-    pass: process.env.EMAIL_PASS,     // App-specific password or actual password if Less Secure Apps is enabled
+    pass: process.env.EMAIL_PASS, // App-specific password or actual password if Less Secure Apps is enabled
   },
 });
 
@@ -426,9 +432,9 @@ module.exports.modifyApplication = async function (req, res) {
         throw new Error("Applicant email is undefined or empty");
       }
       const acceptMailOptions = {
-        from: 'autowolfjobs@gmail.com',
+        from: "autowolfjobs@gmail.com",
         to: application.applicantemail,
-        subject: 'Application Accepted',
+        subject: "Application Accepted",
         text: `Dear ${application.applicantname},\n\nCongratulations! We are pleased to inform you that your application for ${application.jobname} has been accepted. Our team will reach out with further details soon.\n\nBest regards,\nWolfJobs Team`,
       };
 
@@ -436,9 +442,9 @@ module.exports.modifyApplication = async function (req, res) {
 
       transporter.sendMail(acceptMailOptions, (error, info) => {
         if (error) {
-          console.error('Error sending acceptance email:', error);
+          console.error("Error sending acceptance email:", error);
         } else {
-          console.log('Acceptance email sent:', info.response);
+          console.log("Acceptance email sent:", info.response);
         }
       });
     }
@@ -459,19 +465,22 @@ module.exports.modifyApplication = async function (req, res) {
         throw new Error("Applicant email is undefined or empty");
       }
       const screeningMailOptions = {
-        from: 'autowolfjobs@gmail.com',
+        from: "autowolfjobs@gmail.com",
         to: application.applicantemail,
-        subject: 'Application Screening Phase',
+        subject: "Application Screening Phase",
         text: `Dear ${application.applicantname},\n\nYour application for ${application.jobname} has moved to the screening phase. Please fill out the questionnaire.\n\nBest regards,\nWolfJobs Team`,
       };
 
-      console.log("Sending screening email with options:", screeningMailOptions);
+      console.log(
+        "Sending screening email with options:",
+        screeningMailOptions
+      );
 
       transporter.sendMail(screeningMailOptions, (error, info) => {
         if (error) {
-          console.error('Error sending screening email:', error);
+          console.error("Error sending screening email:", error);
         } else {
-          console.log('Screening email sent:', info.response);
+          console.log("Screening email sent:", info.response);
         }
       });
     }
@@ -482,9 +491,9 @@ module.exports.modifyApplication = async function (req, res) {
         throw new Error("Applicant email is undefined or empty");
       }
       const rejectMailOptions = {
-        from: 'autowolfjobs@gmail.com',
+        from: "autowolfjobs@gmail.com",
         to: application.applicantemail,
-        subject: 'Application Rejected',
+        subject: "Application Rejected",
         text: `Dear ${application.applicantname},\n\nThank you for your interest in ${application.jobname}. Unfortunately, we have decided to move forward with other candidates.\n\nBest regards,\nWolfJobs Team`,
       };
 
@@ -492,9 +501,9 @@ module.exports.modifyApplication = async function (req, res) {
 
       transporter.sendMail(rejectMailOptions, (error, info) => {
         if (error) {
-          console.error('Error sending rejection email:', error);
+          console.error("Error sending rejection email:", error);
         } else {
-          console.log('Rejection email sent:', info.response);
+          console.log("Rejection email sent:", info.response);
         }
       });
     }
@@ -516,7 +525,6 @@ module.exports.modifyApplication = async function (req, res) {
     });
   }
 };
-
 
 module.exports.acceptApplication = async function (req, res) {
   try {
@@ -608,20 +616,19 @@ module.exports.closeJob = async function (req, res) {
   }
 };
 
-
-const logger = require('./simpleLogger'); 
+const logger = require("./simpleLogger");
 
 module.exports.generateOtp = async function (req, res) {
-  const otp = Math.floor(100000 + Math.random() * 900000); 
-  const expirationTime = 10 * 60 * 1000; 
+  const otp = Math.floor(100000 + Math.random() * 900000);
+  const expirationTime = 10 * 60 * 1000;
   try {
-    // logger.info("generateOtp function called"); 
+    // logger.info("generateOtp function called");
     // logger.info("Creating OTP document in database...");
 
     let authOtp = await AuthOtp.create({
       userId: req.body.userId,
       otp: otp,
-      expiresAt: new Date(Date.now() + expirationTime), 
+      expiresAt: new Date(Date.now() + expirationTime),
     });
     // logger.info(`OTP document created for user ${req.body.userId}`);
 
@@ -638,7 +645,7 @@ module.exports.generateOtp = async function (req, res) {
     logger.info(`Sending OTP email to: ${email}`);
 
     const mailOptions = {
-      from: "autowolfjobs@gmail.com", 
+      from: "autowolfjobs@gmail.com",
       to: email,
       subject: "Your OTP for Login Verification",
       html: `<p>Your OTP is <b>${otp}</b>. This OTP is valid for 10 minutes.</p>`,
@@ -662,18 +669,17 @@ module.exports.generateOtp = async function (req, res) {
   }
 };
 
-
-module.exports.verifyOtp = async function(req, res) {
+module.exports.verifyOtp = async function (req, res) {
   const { userId, otp } = req.body;
 
   const record = await AuthOtp.findOne({ userId, otp });
   if (!record || record.expiresAt < new Date()) {
-      return res.status(400).json({ error: 'Invalid or expired OTP' });
+    return res.status(400).json({ error: "Invalid or expired OTP" });
   }
 
   await AuthOtp.deleteOne({ _id: record._id });
 
-  res.json({ success: 'OTP verified, login successful' });
+  res.json({ success: "OTP verified, login successful" });
 };
 
 // module.exports.verifyOtp = async function (req, res) {
@@ -756,10 +762,14 @@ module.exports.notifyApplicant = async function (req, res) {
 
     await transporter.sendMail(mailOptions);
 
-    res.status(200).json({ message: "Interview scheduled and notification sent successfully" });
+    res.status(200).json({
+      message: "Interview scheduled and notification sent successfully",
+    });
   } catch (error) {
     console.error("Error scheduling interview:", error);
-    res.status(500).json({ message: "Internal Server Error", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Internal Server Error", error: error.message });
   }
 };
 
@@ -797,11 +807,81 @@ exports.declineInterview = async (req, res) => {
     application.status = "rejected";
     await application.save();
 
-    res.status(200).json({ message: "Interview declined, application moved to rejected status" });
+    res.status(200).json({
+      message: "Interview declined, application moved to rejected status",
+    });
   } catch (error) {
     res.status(500).json({ message: "Error declining interview", error });
   }
 };
 
+//save jobs
+module.exports.saveJob = async function (req, res) {
+  try {
+    const { userId, jobId } = req.body;
+    if (!userId || !jobId) {
+      return res.status(400).json({
+        message: "User ID and Job ID are required",
+        success: false,
+      });
+    }
+    console.log("User ID:", userId);
+    console.log("Job ID:", jobId);
+    let save_Job = await SavedJob.findOne({ userId: userId, jobId: jobId });
+    if (save_Job) {
+      await SavedJob.deleteOne({ _id: save_Job._id });
+      // Update the job's saved status to false
+      await Job.updateOne({ _id: jobId }, { saved: false });
 
+      res.set("Access-Control-Allow-Origin", "*");
+      return res.status(200).json({
+        message: "Job unsaved",
+        success: true,
+      });
+    } else {
+      let newSaveJob = await SavedJob.create({ userId: userId, jobId: jobId });
+      await Job.updateOne({ _id: jobId }, { saved: true });
+      res.set("Access-Control-Allow-Origin", "*");
+      return res.json(200, {
+        message: "Job saved",
+        data: { savedJob: newSaveJob },
+        success: true,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.json(500, {
+      message: "Internal Server Error",
+    });
+  }
+};
+//display save
+module.exports.saveJobList = async function (req, res) {
+  try {
+    const { userId } = req.params.id;
 
+    const savedJobs = await SavedJob.find(userId);
+    res.set("Access-Control-Allow-Origin", "*");
+    if (savedJobs.length === 0) {
+      return res.status(200).json({
+        message: "No saved jobs found",
+        data: [],
+        success: true,
+      });
+    }
+    const jobIds = savedJobs.map((job) => job.jobId);
+    const jobs = await Job.find({ _id: { $in: jobIds } });
+    res.set("Access-Control-Allow-Origin", "*");
+    return res.status(200).json({
+      message: "Saved jobs retrieved successfully",
+      data: jobs,
+      success: true,
+    });
+  } catch (error) {
+    console.error("Error counting saved jobs:", error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      success: false,
+    });
+  }
+};
