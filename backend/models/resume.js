@@ -1,10 +1,11 @@
+
 const mongoose = require('mongoose');
 
 const resumeSchema = new mongoose.Schema({
   applicantId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: 'User' 
+    ref: 'User'
   },
   fileName: {
     type: String,
@@ -22,6 +23,10 @@ const resumeSchema = new mongoose.Schema({
   uploadedAt: {
     type: Date,
     default: Date.now
+  }, //group49
+  skills: { // New field to store extracted skills
+    type: [String], 
+    default: []
   }
 });
 
