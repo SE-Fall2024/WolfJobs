@@ -34,6 +34,10 @@ const Header = () => {
                   </div>
                 )}
                 {isLoggedIn && <NavBarItem link="/explore" text="All jobs" />}
+                {/* group49 */}
+                {role === "Applicant" && isLoggedIn && (
+                  <NavBarItem link="/MatchedJobs" text="Matched Jobs" />
+                )}
               </ul>
               <NavBar />
             </div>
