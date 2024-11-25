@@ -398,6 +398,7 @@ module.exports.createApplication = async function (req, res) {
   }
 };
 
+//group49
 // Configure the email transporter
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -884,4 +885,57 @@ module.exports.saveJobList = async function (req, res) {
       success: false,
     });
   }
+};
+
+//group49
+module.exports.applyJob = async (req, res) => {
+  try {
+    console.log(req.body); 
+
+    // Check if all required fields are provided
+    const { jobname, applicantname, applicantid, applicantemail, applicantSkills, phonenumber, managerid, jobid } = req.body;
+
+    if (!jobname || !applicantname || !applicantid || !jobid) {
+      return res.status(400).json({ message: "Missing required fields", error: true });
+    }
+
+    // Check if the user has already applied for the job
+    const existingApplication = await Application.findOne({
+      applicantid,
+      jobid,
+    });
+
+    if (existingApplication) {
+      return res.status(400).json({ message: "You have already applied for this job", error: true });
+    }
+
+    // Create a new application
+    const newApplication = new Application({
+      jobid,
+      jobname,
+      applicantid,
+      applicantname,
+      applicantemail,
+      applicantskills: applicantSkills,
+      phonenumber,
+      managerid,
+      status: "applied",  // Set initial status to "applied"
+    });
+
+    await newApplication.save();
+    return res.status(200).json({ message: "Application saved successfully", data: newApplication });
+  } catch (error) {
+    console.error("Error saving application:", error);
+    return res.status(500).json({ message: "Error saving application", error: true });
+  }
+};
+
+const { body, validationResult } = require("express-validator");
+const handleValidationErrors = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    const errorMessages = errors.array().map(error => error.msg);
+    return res.status(422).json({ errors: errorMessages });
+  }
+  next();
 };
