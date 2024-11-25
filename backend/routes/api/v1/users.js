@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const usersApi = require("../../../controllers/api/v1/users_api");
+const resume_controller = require("../../../controllers/resume_controller");
 
 const bodyParser = require("body-parser");
 
@@ -31,5 +32,7 @@ router.post("/acceptInterview", usersApi.acceptInterview);
 router.post("/declineInterview", usersApi.declineInterview);
 router.post("/saveJob", jsonParser, usersApi.saveJob);
 router.get("/saveJobList/:id", jsonParser, usersApi.saveJobList);
-
+router.post("/parseResume", resume_controller.parseResume);
+router.post("/uploadResume", resume_controller.uploadResume);
+router.get("/resume/:id", resume_controller.getResume);
 module.exports = router;
