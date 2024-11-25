@@ -19,9 +19,11 @@ import JobPreview from "./Pages/CreateJob/jobPreview";
 import Resume from "./Pages/Resume/Resume";
 import ResumeViewer from "./components/Resume/ResumeViewer";
 import Notifications from "./Pages/Notifications/Notifications";
-import CalendarPage from "./Pages/Calendar/CalendarPage";
-import Interview from "./Pages/Interview/Interview";
 import Saved from "./Pages/Save/save";
+import CalendarPage from "./Pages/Calendar/CalendarPage"; 
+import Interview from './Pages/Interview/Interview';
+//group49
+import MatchedJobs from "./Pages/MatchedJobs/MatchedJobs";
 
 const App = () => {
   return (
@@ -121,6 +123,15 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Interview />
+              </ProtectedRoute>
+            }
+          />
+          {/* group49 */}
+          <Route
+            path="/MatchedJobs"
+            element={
+              <ProtectedRoute>
+                <MatchedJobs />
               </ProtectedRoute>
             }
           />
