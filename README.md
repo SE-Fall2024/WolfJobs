@@ -73,11 +73,24 @@ At WolfJobs, it’s not just about work – it's about joining a vibrant pack wh
 
 ### Student Applies for Job
 
-![Apply for Job](https://github.com/CSC-510-SE-IPV/WolfJobs/blob/readme-update/GIFs/Student_applies_to_job.gif)
+![Apply for Job](https://github.com/SE-Fall2024/WolfJobs/blob/master/GIFs/applying%20jobs%20(1).gif)
 
 ### Application Status & Questionaire
 
 ![Questionaire](https://github.com/deepr41/WolfJobs/blob/GIF-Update/GIFs/Applicant%20Filling%20answers.gif)
+
+### New Filters for Job Search
+![New Filters](https://github.com/SE-Fall2024/WolfJobs/blob/master/GIFs/newwfilter.gif)
+
+### CV Generation
+![CV Generation](https://github.com/SE-Fall2024/WolfJobs/blob/master/GIFs/cvgeneration.gif.gif)
+
+### Saved Job Applications
+![Saved Applications](https://github.com/SE-Fall2024/WolfJobs/blob/master/GIFs/SAVED%20(1).gif)
+
+### Matched Jobs 
+![Matched Jobs](https://github.com/SE-Fall2024/WolfJobs/blob/master/GIFs/matched.gif)
+
 
 ## Manager Side
 
@@ -101,6 +114,12 @@ At WolfJobs, it’s not just about work – it's about joining a vibrant pack wh
 
 ### Interview Scheduling
 ![Interview Scheduling](https://github.com/CSC-510-SE-IPV/WolfJobs/blob/readme-update/GIFs/interview.gif)
+
+
+
+
+
+
 
 # Future Improvements✨
 
