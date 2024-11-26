@@ -22,6 +22,11 @@ const Header = () => {
                 />
               </a>
               <ul className="ml-4 flex space-x-8">
+                {isLoggedIn && <NavBarItem link="/explore" text="All jobs" />}
+                {/* group49 */}
+                {role === "Applicant" && isLoggedIn && (
+                  <NavBarItem link="/MatchedJobs" text="Matched Jobs" />
+                )}
                 {role == "Manager" && isLoggedIn && (
                   <NavBarItem link="/dashboard" text="My Listings" />
                 )}
@@ -32,11 +37,6 @@ const Header = () => {
                   <div>
                     <NavBarItem link="/saved" text="Saved Applications" />
                   </div>
-                )}
-                {isLoggedIn && <NavBarItem link="/explore" text="All jobs" />}
-                {/* group49 */}
-                {role === "Applicant" && isLoggedIn && (
-                  <NavBarItem link="/MatchedJobs" text="Matched Jobs" />
                 )}
               </ul>
               <NavBar />
