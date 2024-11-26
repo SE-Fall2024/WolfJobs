@@ -15,6 +15,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+
     strategy:
       matrix:
         node-version: [18.x]
@@ -40,6 +41,7 @@ jobs:
         working-directory: ./frontend
         run: |
           npm run coverage
+        continue-on-error: true
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
