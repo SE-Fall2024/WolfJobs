@@ -3,7 +3,7 @@ import axios from "axios";
 import ResumeDropzone from "../../components/Resume/ResumeDropzone";
 import { useUserStore } from "../../store/UserStore";
 //import { toast } from "react-hot-toast";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 
 const Resume: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -44,7 +44,6 @@ const Resume: React.FC = () => {
             // Update the resume in the store
             updateResume(newResumeName);
             updateResumeId(response.data.id); // If necessary, update the user ID
-
           }
         }
       } catch (error) {
@@ -105,7 +104,7 @@ const Resume: React.FC = () => {
         </div>
 
         {resumeName && (
-           <>
+          <>
             <div className="mt-4">
               <p>Current Resume: {resumeName}</p>
               <div className="flex space-x-4">
@@ -148,6 +147,5 @@ const Resume: React.FC = () => {
     </div>
   );
 };
-
 
 export default Resume;
