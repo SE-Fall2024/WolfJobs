@@ -49,6 +49,7 @@ jobs:
           name: dist-without-markdown
           path: |
             frontend/dist
+          continue-on-error: true
             
 
       - name: Upload coverage to Codecov
