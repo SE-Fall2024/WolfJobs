@@ -36,7 +36,7 @@
 **Enhanced User Experience, Security, and Functionality!**
 
 - **Save Jobs:** Bookmark jobs for later review in the “Saved Jobs” section.  
-- **Matched Jobs:** Personalized job recommendations based on your uploaded resume, displayed in a dedicated section.  
+- **Matched Jobs:** Get personalized job recommendations based on your uploaded resume, now displayed in a dedicated section with a **match percentage** indicating how closely a job aligns with your profile and resume, making it easier to prioritize applications.  
 - **Cover Letter Generation:** Automatically generate a generic cover letter after uploading your resume, saving time during the application process.  
 - **Advanced Job Filters:** Improved job search with filters for location-based results, salary range (minimum and maximum), and job type preferences.  
 
