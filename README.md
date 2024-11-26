@@ -107,20 +107,17 @@ At WolfJobs, it’s not just about work – it's about joining a vibrant pack wh
 This platform is constantly evolving to meet user needs. Here are some exciting enhancements planned for the future:  
 
 ### 🌐 Web Scraping for Job Listings  
-- **Description**: Automatically fetch job postings from the NC State University website.  
-- **Benefits**: Enriches the job pool, reducing manual entry and ensuring applicants can access diverse opportunities.  
+- Automatically fetch job postings from the NC State University website.   
 
 ### 📈 Scalable Deployment  
-- **Description**: Deploy the platform on robust cloud infrastructure like AWS, Azure, or Google Cloud.  
-- **Benefits**: Ensures seamless performance and reliability as the user base grows.  
+- Deploy the platform on robust cloud infrastructure like AWS, Azure, or Google Cloud.  
+ 
 
 ### 🤖 Chatbot Integration  
-- **Description**: Introduce an AI-powered chatbot to facilitate real-time interaction between recruiters and applicants.  
-- **Benefits**: Handles FAQs, schedules interviews, and provides instant updates, improving overall user experience.  
+- Introduce an AI-powered chatbot to facilitate real-time interaction between recruiters and applicants.  
 
 ### 🎥 Video Interview Submissions  
-- **Description**: Managers can request applicants to submit video responses for screening questions. Applicants can easily record and upload their videos through the portal.  
-- **Benefits**: Personalizes the evaluation process, allowing recruiters to assess communication skills and personality traits efficiently.  
+- Managers can request applicants to submit video responses for screening questions. Applicants can easily record and upload their videos through the portal.   
 
 ---
 
