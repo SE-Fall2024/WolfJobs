@@ -18,13 +18,20 @@ const predefinedSkills = [
   "HTML",
   "SQL",
   "AWS",
-  "Docker"
+  "Docker",
+  "Spring Boot",
+  "C++",
+  "JSP",
+  "PostgreSQL",
+  "Struts",
+  "CSS3",
+  "HTML5"
 ];
 
 //google generative AI
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 require("dotenv").config();
-const GenAI = new GoogleGenerativeAI("API KEY");
+const GenAI = new GoogleGenerativeAI("AIzaSyAwiaVY223EzNK5GsCd8VQN_wwZTXTxhII");
 const model = GenAI.getGenerativeModel({
   model: "gemini-1.5-pro",
   generationConfig: {
