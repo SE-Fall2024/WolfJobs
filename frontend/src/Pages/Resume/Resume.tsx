@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import ResumeDropzone from "../../components/Resume/ResumeDropzone";
 import { useUserStore } from "../../store/UserStore";
-//import { toast } from "react-toastify";
+//import { toast } from "react-hot-toast";
 import { toast } from "react-hot-toast";
 
 const Resume: React.FC = () => {
@@ -36,7 +36,17 @@ const Resume: React.FC = () => {
           console.log("Resume uploaded successfully");
           toast.success(
             "Resume Uploaded Successfully. Sign out and sign back in to see changes!"
-          ); }
+          );
+
+          const newResumeName = response.data.resumeName; // Adjust if the name field is different
+          console.log(newResumeName);
+          if (newResumeName) {
+            // Update the resume in the store
+            updateResume(newResumeName);
+            updateResumeId(response.data.id); // If necessary, update the user ID
+
+          }
+        }
       } catch (error) {
         console.error("Error uploading the resume", error);
         toast.error("Resume could not be uploaded");
