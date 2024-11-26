@@ -104,20 +104,27 @@ At WolfJobs, it’s not just about work – it's about joining a vibrant pack wh
 
 # Future Improvements✨
 
-**1. Interview Video Submission** - Managers can request applicants to submit a video screening file and applicants can upload a video on their side of the portal.
+This platform is constantly evolving to meet user needs. Here are some exciting enhancements planned for the future:  
 
-**2. Job Analysis🔍** – WolfJobs will provide the functionality of analysing various aspects of a job. Job Analysis based on various parameters using graphical representation will help in making prediction on which jobs are more preferred and for which jobs applicants have more inclination. Hiring managers can then decide what rewards and salary to be given to the applicants of that job. Even applicants will get to know, which job is being preferred among other applicants.
+### 🌐 Web Scraping for Job Listings  
+- **Description**: Automatically fetch job postings from the NC State University website.  
+- **Benefits**: Enriches the job pool, reducing manual entry and ensuring applicants can access diverse opportunities.  
 
-**3. Chatbot Integration🤖** – Our platform WolfJobs will also provide the functionality of Chatbot integrated with our website so that user can easily interact with the bot and get to know about various features of our web application and have a nice interactive experience.
+### 📈 Scalable Deployment  
+- **Description**: Deploy the platform on robust cloud infrastructure like AWS, Azure, or Google Cloud.  
+- **Benefits**: Ensures seamless performance and reliability as the user base grows.  
 
-**4. Candidate Matching Percentage** – WolfJobs applicant skill matching feature will include a percentage to how fit a candidate's skills are based on the job's required skills. Applicants will see a match percentage indicating how likely they are to get accepted and recieve an interview. 
+### 🤖 Chatbot Integration  
+- **Description**: Introduce an AI-powered chatbot to facilitate real-time interaction between recruiters and applicants.  
+- **Benefits**: Handles FAQs, schedules interviews, and provides instant updates, improving overall user experience.  
 
-**5. Matching based on Resume** – WolfJobs applicants will be able to parse their resume and WolfJobs will extract key skills from the resume and compare it with required job skills to give candidates job matching status.
+### 🎥 Video Interview Submissions  
+- **Description**: Managers can request applicants to submit video responses for screening questions. Applicants can easily record and upload their videos through the portal.  
+- **Benefits**: Personalizes the evaluation process, allowing recruiters to assess communication skills and personality traits efficiently.  
 
-**6. Customizable Job Alerts🔔** – Allow applicants to set personalized job alerts based on their preferences like job title, location, salary range, or employment type. This feature will send automated notifications when a new job posting matches their criteria, helping applicants stay up-to-date with relevant opportunities without constantly checking the platform.
+---
 
-**7. Saved Jobs Feature📁** – Add a "Save for Later" feature so applicants can bookmark job listings they are interested in and revisit them easily. This will help applicants keep track of positions they may want to apply for, allowing them to compare and prioritize roles without losing track of opportunities.
-
+These features aim to make the platform more comprehensive and user-friendly, addressing modern recruitment challenges and enhancing the hiring experience.
 
 # Contributors
 
