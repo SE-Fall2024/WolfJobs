@@ -10,34 +10,34 @@ const JobListTile = (props: any) => {
   const { data }: { data: Job } = props;
   let action = "view-more";
 
-  const getMatchStatus = (job: Job) => {
-    let matchStatus = {
-      text: "Low Match",
-      style: { backgroundColor: "#FF5757", color: "white" },
-    };
+  // const getMatchStatus = (job: Job) => {
+  //   let matchStatus = {
+  //     text: "Low Match",
+  //     style: { backgroundColor: "#FF5757", color: "white" },
+  //   };
 
-    const skills = useUserStore((state) => state.skills);
-    if (skills && job.requiredSkills) {
-      const applicantSkillsArray = skills
-        .split(",")
-        .map((skill) => skill.trim().toLowerCase());
-      const requiredSkillsArray = job.requiredSkills
-        .split(",")
-        .map((skill) => skill.trim().toLowerCase());
-      const isMatch = requiredSkillsArray.some((skill) =>
-        applicantSkillsArray.includes(skill)
-      );
+  //   const skills = useUserStore((state) => state.skills);
+  //   if (skills && job.requiredSkills) {
+  //     const applicantSkillsArray = skills
+  //       .split(",")
+  //       .map((skill) => skill.trim().toLowerCase());
+  //     const requiredSkillsArray = job.requiredSkills
+  //       .split(",")
+  //       .map((skill) => skill.trim().toLowerCase());
+  //     const isMatch = requiredSkillsArray.some((skill) =>
+  //       applicantSkillsArray.includes(skill)
+  //     );
 
-      if (isMatch) {
-        matchStatus = {
-          text: "Match",
-          style: { backgroundColor: "#00E000", color: "white" },
-        };
-      }
-    }
+  //     if (isMatch) {
+  //       matchStatus = {
+  //         text: "Match",
+  //         style: { backgroundColor: "#00E000", color: "white" },
+  //       };
+  //     }
+  //   }
 
-    return matchStatus;
-  };
+  //   return matchStatus;
+  // };
 
   const [active, setActive] = useState<boolean>(true);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -149,14 +149,14 @@ const JobListTile = (props: any) => {
                   {getAffiliationTag(affilation).toUpperCase()}
                 </p>
               </div>
-              {userRole === "Applicant" && (
+              {/* {userRole === "Applicant" && (
                 <div
                   className={`ml-2 rounded-full   flex-0 px-3 py-0`}
                   style={getMatchStatus(data).style}
                 >
                   <p className="inline text-xs">{getMatchStatus(data).text}</p>
                 </div>
-              )}
+              )} */}
 
               <a
                 className="mr-3 flex-1 w-[2.0625rem] overflow-hidden md:w-auto items-end justify-end content-end"
