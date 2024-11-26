@@ -24,7 +24,7 @@ const predefinedSkills = [
 //google generative AI
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 require("dotenv").config();
-const GenAI = new GoogleGenerativeAI("API Key");
+const GenAI = new GoogleGenerativeAI("API KEY");
 const model = GenAI.getGenerativeModel({
   model: "gemini-1.5-pro",
   generationConfig: {
@@ -36,27 +36,27 @@ const model = GenAI.getGenerativeModel({
   },
 });
 const INPUT_PROMPT_USER = `I am seeking a well-crafted, professional cover letter based on the information in my resume and a job description I will provide. I want the cover letter to clearly highlight my relevant skills, experiences, and accomplishments that match the job requirements. Here are the specifics:
-write my information in cover letter
-my name is rahil. 
-my email id is rahilshukla3122@gmail.com.
-my phone number is +1 9123456789
-1. Attached Resume: Use the information in this resume to reflect my qualifications, including past roles, skills, and any unique projects or accomplishments that are particularly relevant.
-2. Job Description:
-    - Position: Python Developer
-    - Company: Amazon
-    - Description: As a Python Developer at Amazon, you’ll be responsible for designing, developing, and optimizing scalable, high-performance applications and systems. You’ll work closely with cross-functional teams to implement data-driven solutions, automate processes, and improve infrastructure efficiency. Strong problem-solving skills and experience with Python frameworks and AWS services are essential for this role, along with a focus on delivering high-quality, maintainable code.
-3. Tone and Style:
-    - The tone should be professional yet engaging, showing enthusiasm for the position and the company.
-    - I would like the cover letter to feel personalized to this specific role and company.
-    - Emphasize any unique attributes or skills that set me apart from other candidates, especially if they align well with the job description.
-4. Structure:
-    - Introduction: A brief overview of who I am, why I’m excited about this position, and how I found the job.
-    - Body: A couple of paragraphs that:
-      - Highlight my relevant skills, work experiences, and accomplishments that align with the job description.
-      - Use examples or brief anecdotes to demonstrate how my previous work aligns with the company’s needs.
-    - Conclusion: A closing paragraph that reaffirms my interest in the role, expresses eagerness to contribute to the company, and thanks the hiring team for their time.
+
+Attached Resume: Use the information in this resume to reflect my qualifications, including past roles, skills, and any unique projects or accomplishments that are particularly relevant.
+
+Job Description:
+
+Position: [Job Title]
+Company: [Company Name]
+Description: [Job Responsibilities and Requirements]
+Tone and Style:
+
+The tone should be professional yet engaging, showing enthusiasm for the position and the company.
+I would like the cover letter to feel personalized to this specific role and company.
+Emphasize any unique attributes or skills that set me apart from other candidates, especially if they align well with the job description.
+Structure:
+
+Introduction: A brief overview of who I am, why I’m excited about this position, and how I found the job.
+Body: A couple of paragraphs that:
+Highlight my relevant skills, work experiences, and accomplishments that align with the job description.
+Use examples or brief anecdotes to demonstrate how my previous work aligns with the company’s needs.
+Conclusion: A closing paragraph that reaffirms my interest in the role, expresses eagerness to contribute to the company, and thanks the hiring team for their time.
 Please ensure that the cover letter is tailored, avoids generic phrases, and feels like a strong, compelling argument for why I am the ideal candidate for this position. Output the cover letter in a format ready for submission.
-i only need just the cover letter output in string format.
 `;
 INPUT_PROMPT_MANAGER = `
   You are an ATS (Applicant Tracking System) scanner specializing in university dining and campus enterprise operations. Evaluate the provided resume against the job description using these guidelines:
