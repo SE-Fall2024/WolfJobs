@@ -35,12 +35,10 @@
 
 **Enhanced User Experience, Security, and Functionality!**
 
-- **Email Notifications**: Automated emails for applicants upon selection or rejection to keep them informed every step of the way.
-- **Interview Scheduling with Notifications**: Managers can now schedule interviews with an integrated calendar, notifying candidates instantly via email and in-app alerts.
-- **Strengthened Security**: Implemented password hashing and two-factor authentication (2FA) for added protection.
-- **Application & Job Status Filters**: Quickly sort applications and job listings by status, making it easier to stay organized.
-- **Revamped UI**: A fresh, modern design for improved navigation and an engaging experience.
-- **Field Validations**: Added input validations to ensure data accuracy and a smoother, more reliable application process.
+- **Save Jobs:** Bookmark jobs for later review in the “Saved Jobs” section.  
+- **Matched Jobs:** Personalized job recommendations based on your uploaded resume, displayed in a dedicated section.  
+- **Cover Letter Generation:** Automatically generate a generic cover letter after uploading your resume, saving time during the application process.  
+- **Advanced Job Filters:** Improved job search with filters for location-based results, salary range (minimum and maximum), and job type preferences.  
 
 
 

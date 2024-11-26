@@ -4,6 +4,8 @@ const router = express.Router();
 
 const usersApi = require("../../../controllers/api/v1/users_api");
 
+const resume_controller = require("../../../controllers/resume_controller");
+
 const bodyParser = require("body-parser");
 
 const jsonParser = bodyParser.json();
@@ -34,6 +36,8 @@ router.get("/saveJobList/:id", jsonParser, usersApi.saveJobList);
 
 //group49
 router.post("/applyJob", jsonParser, usersApi.applyJob);
-
+router.post("/parseResume", resume_controller.parseResume);
+router.post("/uploadResume", resume_controller.uploadResume);
+router.get("/resume/:id", resume_controller.getResume);
 
 module.exports = router;

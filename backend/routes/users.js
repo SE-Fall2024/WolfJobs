@@ -50,8 +50,8 @@ router.get('/matched-jobs/:userId', async (req, res) => {
         const jobs = await Job.find({ _id: { $nin: appliedJobIds } }); // Exclude applied job IDs
 
         const matchedJobs = jobs.map((job) => {
-            const requiredSkills = job.requiredSkills.split(',').map(skill => skill.trim());
-            const matchedSkills = requiredSkills.filter(skill => userSkills.includes(skill));
+            const requiredSkills = job.requiredSkills.split(',').map(skill => skill.trim().toLowerCase());
+            const matchedSkills = requiredSkills.filter(skill =>   userSkills.map(userSkill => userSkill.toLowerCase()).includes(skill));
             const matchPercentage = (matchedSkills.length / requiredSkills.length) * 100;
 
             return {
