@@ -32,8 +32,8 @@ const Saved = () => {
             jobsList={filteredJobList}
             title={"Saved Applications"}
           />
+          <JobDetailView />
         </div>
-        <JobDetailView />
       </div>
     </>
   );
