@@ -116,6 +116,10 @@ At WolfJobs, it’s not just about work – it's about joining a vibrant pack wh
 ### Interview Scheduling
 ![Interview Scheduling](https://github.com/CSC-510-SE-IPV/WolfJobs/blob/readme-update/GIFs/interview.gif)
 
+### Notificatioon Alert
+![Notification Alert](https://github.com/SE-Fall2024/WolfJobs/blob/master/GIFs/notification%20alert.png)
+
+
 
 
 
