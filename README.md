@@ -40,6 +40,7 @@
 - **Cover Letter Generation:** Automatically generate a generic cover letter after uploading your resume, saving time during the application process.  
 - **Advanced Job Filters:** Improved job search with filters for location-based results, salary range (minimum and maximum), and job type preferences.  
 - **Notification System:** Applicants will now be notified when new jobs are posted.
+- **Enhanced UI:** The user interface has been improved for a more seamless and visually appealing job search experience.
 
 
 # Presentation Video
