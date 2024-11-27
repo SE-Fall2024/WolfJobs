@@ -39,5 +39,5 @@ router.post("/applyJob", jsonParser, usersApi.applyJob);
 router.post("/parseResume", resume_controller.parseResume);
 router.post("/uploadResume", resume_controller.uploadResume);
 router.get("/resume/:id", resume_controller.getResume);
-
+router.post("/notifyApplicants", usersApi.notifyNewJob);
 module.exports = router;

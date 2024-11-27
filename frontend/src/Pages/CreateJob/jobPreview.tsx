@@ -37,7 +37,7 @@ const JobPreview = () => {
   const onSubmit = (e: any) => {
     e.preventDefault();
 
-    const url = `http://localhost:8000/api/v1/users/createjob`;
+    const url = "http://localhost:8000/api/v1/users/createjob";
     const body = {
       id: userId,
       name: details.role,
@@ -45,30 +45,53 @@ const JobPreview = () => {
       location: details.location,
       description: details.description,
       pay: details.pay,
-      // question1: questions.question1,
-      // question2: questions.question2,
-      // question3: questions.question3,
-      // question4: questions.question4,
       questions: questions.questions,
       requiredSkills: details.requiredSkills,
     };
 
-    axios.post(url, body)
-    .then((res) => {
-      if (res.status !== 200) {
-        toast.error("Job posting failed");
-        return;
-      }
-      toast.success("Job created");
-      console.log(details);
-      navigate("/dashboard");
-    })
-    .catch((error) => {
-      toast.error("An error occurred while creating the job");
-      // toast.error(questions.questions[0])
-      console.error("Error:", error);
-    });
-};
+    axios
+      .post(url, body)
+      .then((res) => {
+        if (res.status !== 200) {
+          toast.error("Job posting failed");
+          return;
+        }
+
+        const notifyApplicantsUrl =
+          "http://localhost:8000/api/v1/users/notifyApplicants";
+        const body = {
+          jobId: userId, // Assuming the job response contains the created job ID
+          jobName: details.role, // Assuming 'role' is the job title
+        };
+
+        // Notify all applicants
+        axios
+          .post(notifyApplicantsUrl, body)
+          .then((notificationRes) => {
+            console.log(notificationRes);
+            if (notificationRes.status === 200) {
+              toast.success("Job created and applicants notified");
+            } else if (notificationRes.status === 404) {
+              //toast.error(notificationRes.json.message);
+            } else {
+              toast.error("Error notifying applicants");
+            }
+          })
+          .catch((error) => {
+            toast.error("An error occurred while notifying applicants");
+            console.error("Error notifying applicants:", error);
+          });
+
+        // Success after both steps
+        toast.success("Job created");
+        console.log(details);
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        toast.error("An error occurred while creating the job");
+        console.error("Error:", error);
+      });
+  };
 
   useEffect(() => {
     console.log(questions);

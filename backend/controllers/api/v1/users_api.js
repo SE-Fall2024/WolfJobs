@@ -939,3 +939,44 @@ const handleValidationErrors = (req, res, next) => {
   }
   next();
 };
+
+//Group 49
+module.exports.notifyNewJob = async function (req, res) {
+  try {
+    console.log("Hello");
+    const job = await Job.findOne({ name: req.body.jobName });
+    if (!job) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+
+    const applicants = await User.find({ role: "Applicant" });
+    if (applicants.length === 0) {
+      return res.status(404).json({ message: "No applicants found to notify" });
+    }
+    console.log(applicants);
+    const notifications = applicants.map(async (applicant) => {
+      const mailOptions = {
+        from: "stallap@ncsu.edu",
+        to: applicant.email,
+        subject: "New Job Opportunity Available",
+        html: `<p>Dear Applicant,</p>
+             <p>A new job for the position of <strong>${req.body.jobName}</strong> has been posted. You can check out more details on the job portal.</p>
+             <p>Best regards,<br/>Job Portal Team</p>`,
+      };
+
+      return transporter.sendMail(mailOptions);
+    });
+
+    await Promise.all(notifications);
+
+    res.status(200).json({
+      message: "New job notifications sent to applicants successfully",
+    });
+  } catch (error) {
+    console.error("Error notifying applicants about new job:", error);
+    res.status(500).json({
+      message: "Internal Server Error",
+      error: error.message,
+    });
+  }
+};
